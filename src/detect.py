@@ -1,4 +1,5 @@
-from functools import partial
+import sys
+import struct
 
 import rclpy
 from rclpy.node import Node
@@ -9,40 +10,17 @@ import can_msgs.msg
 from cv_bridge import CvBridge
 import cv2 as cv
 
-import colordistinguish
+import colordetect
 
 def serialize_int(h):
     return bytearray(struct.pack('<h', h))
 
-def detect_line_and_publish(pub, cvb, msg):
-    img = cvb.imgmsg_to_cv2(msg, 'bgr8')
-
-    res, frame, hsv, mask = colordistinguish.colorthresh(img)
-    
-    #cv.imshow("img", img)
-    #cv.imwrite("img.png", img)
-    #cv.imshow("hsv", hsv)
-    #cv.imshow("mask", mask)
-    #cv.waitKey(0)
-
-    #print(res)
-
-    print(res)
-
-    if res == 'turn left':
-        color = 1
-    elif res == 'turn right':
-        color = 2
-    elif res == 'go straight':
-        color = 3
-    elif res == 'search':
-        color = 4
-    else:
-        print("bad direction {}".format(res), file=sys.stderr)
-
+class ColorSerializer:
     CAN_MSG_ID_COLOR=0x110
 
-    msg = can_msgs.msg.Frame(id=CAN_MSG_ID_COLOR, dlc=2, data=
+    def construct_can_frame(self, color):
+    
+        color_frame = can_msgs.msg.Frame(id=self.CAN_MSG_ID_COLOR, dlc=2, data=
                 serialize_int(
                     color
                 )
@@ -56,39 +34,61 @@ def detect_line_and_publish(pub, cvb, msg):
                     0
                 )
             )
+    
+        return color_frame
 
-    pub.publish(msg)
 
+class Detect(Node):
+    def __init__(self, cser, cvb):
+        super().__init__('detect')
 
-image_msg = None
-def image_received(msg):
-    global image_msg
-    image_msg = msg
+        self.cser = cser        
+        self.cvb = cvb
+
+        self.image_subscriber = self.create_subscription(
+                sensor_msgs.msg.Image, '/camera/image_raw', self.image_received, 10)
+
+        self.can_sender_publisher = self.create_publisher(
+                can_msgs.msg.Frame, 'to_can_bus', 10)
+
+    def image_received(self, msg):
+        img = self.cvb.imgmsg_to_cv2(msg, 'bgr8')
+
+        res, frame, hsv, mask = colordetect.colorthresh(img)
+
+        #cv.imshow("img", img)
+        #cv.imwrite("img.png", img)
+        #cv.imshow("hsv", hsv)
+        #cv.imshow("mask", mask)
+        #cv.waitKey(0)
+
+        print(res)
+
+        if res == 'red':
+            color = 1
+        elif res == 'blue':
+            color = 2
+        elif res == 'purple':
+            color = 3
+        elif res == 'search':
+            color = 4
+        else:
+            print("bad direction {}".format(res), file=sys.stderr)
+
+        frame = self.cser.construct_can_frame(color)
+
+        self.can_sender_publisher.publish(frame)
+
 
 def main(args=None):
     rclpy.init(args=args)
 
-    node = Node('detect')
-
-    color_pub = node.create_publisher(
-            can_msgs.msg.Frame,
-            '/to_can_bus',
-            10)
-    
-    image_sub = node.create_subscription(
-            sensor_msgs.msg.Image,
-            '/camera/image_raw',
-            image_received,
-            10)
-    
     cvb = CvBridge()
 
-    while rclpy.ok():
-        if image_msg is not None:
-            detect_line_and_publish(color_pub, cvb, image_msg)
-        rclpy.spin_once(node)
+    detect = Detect(ColorSerializer(), cvb)
+    
+    rclpy.spin(detect)
 
-    node.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':

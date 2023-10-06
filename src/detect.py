@@ -15,34 +15,30 @@ import colordetect
 def serialize_int(h):
     return bytearray(struct.pack('<h', h))
 
-class ColorSerializer:
-    CAN_MSG_ID_COLOR=0x110
+def construct_color_can_frame(self, color, color_id):
+    if color == 'Other':
+        data = bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00')
+    elif color == 'Red':
+        data = bytearray(b'\x01\x00\x00\x00\x00\x00\x00\x00')
+    elif color == 'Blue':
+        data = bytearray(b'\x02\x00\x00\x00\x00\x00\x00\x00')
+    elif color == 'Purple':
+        data = bytearray(b'\x04\x00\x00\x00\x00\x00\x00\x00')
+    elif color == 'Black':
+        data = bytearray(b'\x08\x00\x00\x00\x00\x00\x00\x00')
+    elif color == 'Error':
+        data = bytearray(b'\xFF\x00\x00\x00\x00\x00\x00\x00')
+    else:
+        raise Exception("bad color")
 
-    def construct_can_frame(self, color):
-    
-        color_frame = can_msgs.msg.Frame(id=self.CAN_MSG_ID_COLOR, dlc=2, data=
-                serialize_int(
-                    color
-                )
-                + serialize_int(
-                    0
-                )
-                + serialize_int(
-                    0
-                )
-                + serialize_int(
-                    0
-                )
-            )
-    
-        return color_frame
+    return can_msgs.msg.Frame(id=color_id, dlc=8, data=data)
+
 
 
 class Detect(Node):
-    def __init__(self, cser, cvb):
+    def __init__(self, cvb):
         super().__init__('detect')
-
-        self.cser = cser        
+        
         self.cvb = cvb
 
         self.image_subscriber = self.create_subscription(
@@ -54,7 +50,7 @@ class Detect(Node):
     def image_received(self, msg):
         img = self.cvb.imgmsg_to_cv2(msg, 'bgr8')
 
-        res, frame, hsv, mask = colordetect.colorthresh(img)
+        color, frame, hsv, mask = colordetect.colorthcolorh(img)
 
         #cv.imshow("img", img)
         #cv.imwrite("img.png", img)
@@ -62,20 +58,9 @@ class Detect(Node):
         #cv.imshow("mask", mask)
         #cv.waitKey(0)
 
-        print(res)
+        print(color)
 
-        if res == 'red':
-            color = 1
-        elif res == 'blue':
-            color = 2
-        elif res == 'purple':
-            color = 3
-        elif res == 'search':
-            color = 4
-        else:
-            print("bad direction {}".format(res), file=sys.stderr)
-
-        frame = self.cser.construct_can_frame(color)
+        frame = construct_color_can_frame(color)
 
         self.can_sender_publisher.publish(frame)
 
@@ -85,7 +70,7 @@ def main(args=None):
 
     cvb = CvBridge()
 
-    detect = Detect(ColorSerializer(), cvb)
+    detect = Detect(cvb)
     
     rclpy.spin(detect)
 

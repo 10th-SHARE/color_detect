@@ -5,48 +5,61 @@ TOLERANCE = 15
 
 def colorthresh(frame):
 
+    #hsv:353,77,95 opencv:176.5,196.35,242.25
+    lower_red1 = np.array([0, 100, 0])
+    upper_red1 = np.array([40, 255, 255])
+    lower_red2 = np.array([160,100,0])
+    upper_red2 = np.array([180,255,255])
+
+    #213,78,88  106.5,198.9,224.4
+    lower_blue = np.array([95,100,0])
+    upper_blue = np.array([120,255,255])
+
+    #310,44,63  155,112.2,160.65
+    lower_purple = np.array([125,30,0])
+    upper_purple = np.array([155,200,255])
+
+    lower_black = np.array([0,0,0])
+    upper_black = np.array([180,255,100])
+
+    search_ratio = 0.3
+
     h, w, _ = np.shape(frame)
     
     frame = cv.GaussianBlur(frame, (3, 3), 0.1)
-    
-    hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-    
-    lower_yellow = np.array([20, 100, 100])
-    upper_yellow = np.array([30, 255, 255])
-    
-    mask = cv.inRange(hsv, lower_yellow, upper_yellow)
-    mask[0:int(0.7*h), 0:w] = 0
-    
-    contours, hierarchy = cv.findContours(mask, cv.RETR_LIST, cv.CHAIN_APPROX_NONE)
-    if len(contours) > 0:
-        contour = contours[-1]
-        cv.drawContours(frame, [contour], 0, (0, 255, 0), 3)
-    
-    mask[0:h, 0:int(0.3*w)] = 0
-    mask[0:h, int(0.7*w):w] = 0
-    
-    res = ''
-    m = cv.moments(mask)
-    if m['m00'] == 0:
-        res = 'search'
-    else:
-        c = (m['m10'] / m['m00'], m['m01'] / m['m00'])
-        cv.circle(frame, tuple(int(x) for x in c), 5, (155, 200, 0), -1) 
-    
-        if c[0] < w/2 - TOLERANCE:
-            res = 'turn left'
-        elif c[0] > w/2 + TOLERANCE:
-            res = 'turn right'
-        else:
-            res = 'go straight'
 
-    return res, frame, hsv, mask
+    frame = frame[int((1-search_ratio)*h):h, 0:w]
+    frame = frame[0:h, int((1-search_ratio)*w):w]
+    frame = frame[0:int(search_ratio*h), 0:w]
+    frame = frame[0:h, 0:int(search_ratio*w)]
+
+    #HSV変換
+    hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
+
+    hsv_ave = [hsv.T[0].flatten().mean(),hsv.T[1].flatten().mean(),hsv.T[2].flatten().mean()]
+
+    #print(hsv_ave)
+
+    color = ""
+
+    if((np.all(lower_red1 < hsv_ave) & np.all(hsv_ave < upper_red1)) | (np.all(lower_red2 < hsv_ave) & np.all(hsv_ave < upper_red2))):
+        color = "red"
+    elif(np.all(lower_blue < hsv_ave) & np.all(hsv_ave < upper_blue)):
+        color = "blue"
+    elif(np.all(lower_purple < hsv_ave) & np.all(hsv_ave < upper_purple)):
+        color = "purple"
+    elif(np.all(lower_black < hsv_ave) & np.all(hsv_ave < upper_black)):
+        color = "black"
+    else:
+        color = "other"
+
+    return color, frame, hsv
 
 if __name__ == '__main__':
     frame = cv.imread("../images/img.png")
     #frame = cv.imread(cv.samples.findFile("starry_night.jpg"))
 
-    res, frame, hsv, mask = colorthresh(frame)
+    res, frame, hsv = colorthresh(frame)
 
     print(res)
     

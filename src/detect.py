@@ -16,17 +16,17 @@ def serialize_int(h):
     return bytearray(struct.pack('<h', h))
 
 def construct_color_can_frame(self, color, color_id):
-    if color == 'Other':
+    if color == 'other':
         data = bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00')
-    elif color == 'Red':
+    elif color == 'red':
         data = bytearray(b'\x01\x00\x00\x00\x00\x00\x00\x00')
-    elif color == 'Blue':
+    elif color == 'blue':
         data = bytearray(b'\x02\x00\x00\x00\x00\x00\x00\x00')
-    elif color == 'Purple':
+    elif color == 'purple':
         data = bytearray(b'\x04\x00\x00\x00\x00\x00\x00\x00')
-    elif color == 'Black':
+    elif color == 'black':
         data = bytearray(b'\x08\x00\x00\x00\x00\x00\x00\x00')
-    elif color == 'Error':
+    elif color == 'error':
         data = bytearray(b'\xFF\x00\x00\x00\x00\x00\x00\x00')
     else:
         raise Exception("bad color")
@@ -50,7 +50,7 @@ class Detect(Node):
     def image_received(self, msg):
         img = self.cvb.imgmsg_to_cv2(msg, 'bgr8')
 
-        color, frame, hsv, mask = colordetect.colorthcolorh(img)
+        color, frame, hsv = colordetect.colorthcolorh(img)
 
         #cv.imshow("img", img)
         #cv.imwrite("img.png", img)

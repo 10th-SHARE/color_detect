@@ -56,17 +56,25 @@ def colorthresh(frame):
     return color, frame, hsv
 
 if __name__ == '__main__':
-    frame = cv.imread("../images/img.png")
-    #frame = cv.imread(cv.samples.findFile("starry_night.jpg"))
+    cap = cv.VideoCapture(0)
 
-    res, frame, hsv = colorthresh(frame)
+    while(True):
+        ret ,frame = cap.read()
+    
+        if ret == False:
+            print("cap error")
+        
+        color, frame, hsv = colorthresh(frame)
 
-    print(res)
-    
-    cv.imshow("frame", frame)
-    cv.imshow("hsv", hsv)
-    cv.imshow("mask", mask)
-    
-    k = cv.waitKey(0) & 0xFF
-    
-    
+        print (color)
+
+        frame = cv.resize(frame,(640,480))
+
+        cv.imshow('img',frame)
+
+        if cv.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    cv.destroyAllWindows() 
+        

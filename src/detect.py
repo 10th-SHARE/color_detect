@@ -15,7 +15,7 @@ import colordetect
 def serialize_int(h):
     return bytearray(struct.pack('<h', h))
 
-def construct_color_can_frame(self, color, color_id):
+def construct_color_can_frame(color, color_id):
     if color == 'other':
         data = bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00')
     elif color == 'red':
@@ -42,7 +42,7 @@ class Detect(Node):
         self.cvb = cvb
 
         self.image_subscriber = self.create_subscription(
-                sensor_msgs.msg.Image, '/camera/image_raw', self.image_received, 10)
+                sensor_msgs.msg.Image, '/image_raw', self.image_received, 10)
 
         self.can_sender_publisher = self.create_publisher(
                 can_msgs.msg.Frame, 'to_can_bus', 10)
@@ -50,7 +50,7 @@ class Detect(Node):
     def image_received(self, msg):
         img = self.cvb.imgmsg_to_cv2(msg, 'bgr8')
 
-        color, frame, hsv = colordetect.colorthcolorh(img)
+        color, frame, hsv = colordetect.colorthresh(img)
 
         #cv.imshow("img", img)
         #cv.imwrite("img.png", img)
@@ -60,7 +60,7 @@ class Detect(Node):
 
         print(color)
 
-        frame = construct_color_can_frame(color)
+        frame = construct_color_can_frame(color, color_id=0x104)
 
         self.can_sender_publisher.publish(frame)
 

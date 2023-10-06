@@ -1,5 +1,5 @@
 CMakeFiles/test_pixel_formats.dir/test/test_pixel_formats.cpp.o: \
- /home/ssd2/color_judgement/src/usb_cam/test/test_pixel_formats.cpp \
+ /home/ssd2/color_detect/src/usb_cam/test/test_pixel_formats.cpp \
  /usr/include/stdc-predef.h \
  /opt/ros/humble/src/gtest_vendor/include/gtest/gtest.h \
  /usr/include/c++/11/cstddef \
@@ -259,5 +259,5 @@ CMakeFiles/test_pixel_formats.dir/test/test_pixel_formats.cpp.o: \
  /usr/include/linux/ioctl.h /usr/include/x86_64-linux-gnu/asm/ioctl.h \
  /usr/include/asm-generic/ioctl.h /usr/include/linux/v4l2-common.h \
  /usr/include/linux/v4l2-controls.h /usr/include/linux/const.h \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/pixel_format_base.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/constants.hpp
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/pixel_format_base.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/constants.hpp

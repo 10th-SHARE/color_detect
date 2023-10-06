@@ -1,5 +1,5 @@
 CMakeFiles/test_usb_cam_utils.dir/test/test_usb_cam_utils.cpp.o: \
- /home/ssd2/color_judgement/src/usb_cam/test/test_usb_cam_utils.cpp \
+ /home/ssd2/color_detect/src/usb_cam/test/test_usb_cam_utils.cpp \
  /usr/include/stdc-predef.h \
  /opt/ros/humble/src/gtest_vendor/include/gtest/gtest.h \
  /usr/include/c++/11/cstddef \
@@ -259,7 +259,7 @@ CMakeFiles/test_usb_cam_utils.dir/test/test_usb_cam_utils.cpp.o: \
  /usr/include/x86_64-linux-gnu/libavutil/avconfig.h \
  /usr/include/x86_64-linux-gnu/libavutil/version.h \
  /usr/include/x86_64-linux-gnu/libavutil/macros.h \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/utils.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/utils.hpp \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
@@ -281,6 +281,6 @@ CMakeFiles/test_usb_cam_utils.dir/test/test_usb_cam_utils.cpp.o: \
  /usr/include/c++/11/cstring /usr/include/linux/videodev2.h \
  /usr/include/linux/v4l2-common.h /usr/include/linux/v4l2-controls.h \
  /usr/include/linux/const.h \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/constants.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/pixel_format_base.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/utils.hpp
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/constants.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/pixel_format_base.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/utils.hpp

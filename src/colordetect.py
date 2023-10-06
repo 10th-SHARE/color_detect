@@ -6,21 +6,21 @@ TOLERANCE = 15
 def colorthresh(frame):
 
     #hsv:353,77,95 opencv:176.5,196.35,242.25
-    lower_red1 = np.array([0, 100, 0])
+    lower_red1 = np.array([0, 100, 100])
     upper_red1 = np.array([40, 255, 255])
-    lower_red2 = np.array([160,100,0])
+    lower_red2 = np.array([160,100,100])
     upper_red2 = np.array([180,255,255])
 
     #213,78,88  106.5,198.9,224.4
-    lower_blue = np.array([95,100,0])
-    upper_blue = np.array([120,255,255])
+    lower_blue = np.array([95,100,100])
+    upper_blue = np.array([115,255,255])
 
     #310,44,63  155,112.2,160.65
-    lower_purple = np.array([125,30,0])
-    upper_purple = np.array([155,200,255])
+    lower_purple = np.array([115,30,100])
+    upper_purple = np.array([160,255,255])
 
     lower_black = np.array([0,0,0])
-    upper_black = np.array([180,255,100])
+    upper_black = np.array([180,255,80])
 
     search_ratio = 0.3
 

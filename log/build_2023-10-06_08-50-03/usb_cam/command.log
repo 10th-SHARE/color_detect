@@ -1,0 +1,6 @@
+Invoking command in '/home/ssd2/color_detect/build/usb_cam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/ssd2/color_detect/src/usb_cam -DCMAKE_INSTALL_PREFIX=/home/ssd2/color_detect/install/usb_cam
+Invoked command in '/home/ssd2/color_detect/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/ssd2/color_detect/src/usb_cam -DCMAKE_INSTALL_PREFIX=/home/ssd2/color_detect/install/usb_cam
+Invoking command in '/home/ssd2/color_detect/build/usb_cam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/ssd2/color_detect/build/usb_cam -- -j8 -l8
+Invoked command in '/home/ssd2/color_detect/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/ssd2/color_detect/build/usb_cam -- -j8 -l8
+Invoking command in '/home/ssd2/color_detect/build/usb_cam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/ssd2/color_detect/build/usb_cam
+Invoked command in '/home/ssd2/color_detect/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/ssd2/color_detect/build/usb_cam

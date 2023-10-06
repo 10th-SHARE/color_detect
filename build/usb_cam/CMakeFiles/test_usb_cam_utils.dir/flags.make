@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/opt/ros/humble/src/gtest_vendor/include -I/home/ssd2/color_judgement/src/usb_cam/include -isystem /usr/include/opencv4
+CXX_INCLUDES = -I/opt/ros/humble/src/gtest_vendor/include -I/home/ssd2/color_detect/src/usb_cam/include -isystem /usr/include/opencv4
 
 CXX_FLAGS = -Wall -Wextra -Wpedantic -Werror -std=gnu++14
 

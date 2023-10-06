@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Dusb_cam_EXPORTS
 
-CXX_INCLUDES = -I/home/ssd2/color_judgement/src/usb_cam/include -isystem /usr/include/opencv4
+CXX_INCLUDES = -I/home/ssd2/color_detect/src/usb_cam/include -isystem /usr/include/opencv4
 
 CXX_FLAGS = -fPIC -Wall -Wextra -Wpedantic -Werror -std=gnu++14
 

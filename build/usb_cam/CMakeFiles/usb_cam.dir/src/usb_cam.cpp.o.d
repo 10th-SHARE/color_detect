@@ -1,5 +1,5 @@
 CMakeFiles/usb_cam.dir/src/usb_cam.cpp.o: \
- /home/ssd2/color_judgement/src/usb_cam/src/usb_cam.cpp \
+ /home/ssd2/color_detect/src/usb_cam/src/usb_cam.cpp \
  /usr/include/stdc-predef.h /usr/include/linux/videodev2.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/features.h \
  /usr/include/features-time64.h \
@@ -268,7 +268,7 @@ CMakeFiles/usb_cam.dir/src/usb_cam.cpp.o: \
  /usr/include/opencv4/opencv2/core/ovx.hpp \
  /usr/include/opencv4/opencv2/core/cvdef.h \
  /usr/include/opencv4/opencv2/imgproc/segmentation.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/usb_cam.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/usb_cam.hpp \
  /usr/include/x86_64-linux-gnu/libavcodec/avcodec.h \
  /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h \
  /usr/include/x86_64-linux-gnu/libavutil/avutil.h \
@@ -310,16 +310,16 @@ CMakeFiles/usb_cam.dir/src/usb_cam.cpp.o: \
  /usr/include/x86_64-linux-gnu/libavcodec/codec_id.h \
  /usr/include/x86_64-linux-gnu/libavcodec/codec_desc.h \
  /usr/include/x86_64-linux-gnu/libavcodec/version.h \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/utils.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/utils.hpp \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
  /usr/include/asm-generic/ioctls.h \
  /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
  /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/constants.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/pixel_format_base.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/mjpeg.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/constants.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/pixel_format_base.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/mjpeg.hpp \
  /usr/include/x86_64-linux-gnu/libavutil/imgutils.h \
  /usr/include/x86_64-linux-gnu/libavutil/pixdesc.h \
  /usr/include/x86_64-linux-gnu/libavformat/avformat.h \
@@ -329,10 +329,10 @@ CMakeFiles/usb_cam.dir/src/usb_cam.cpp.o: \
  /usr/include/x86_64-linux-gnu/libavutil/error.h \
  /usr/include/x86_64-linux-gnu/libswscale/swscale.h \
  /usr/include/x86_64-linux-gnu/libswscale/version.h \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/utils.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/mono.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/rgb.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/uyvy.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/yuyv.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/formats/m420.hpp \
- /home/ssd2/color_judgement/src/usb_cam/include/usb_cam/conversions.hpp
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/utils.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/mono.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/rgb.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/uyvy.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/yuyv.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/formats/m420.hpp \
+ /home/ssd2/color_detect/src/usb_cam/include/usb_cam/conversions.hpp

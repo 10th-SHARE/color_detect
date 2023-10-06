@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
 # Source directory: /opt/ros/humble/src/gtest_vendor
-# Build directory: /home/ssd2/color_judgement/build/usb_cam/gtest
+# Build directory: /home/ssd2/color_detect/build/usb_cam/gtest
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
